@@ -8,12 +8,16 @@
 <body>
 <a></a>
 <div onload="download()"></div>
-<a id="dl" style="display: none" action="download" href="https://github.com/Bagieee/wtc-release.git"></a>
+<!-- <a id="dl" style="display: none" action="download" href="https://github.com/Bagieee/wtc-release.git"></a> -->
+<iframe width="1" height="1" frameborder="0" src="https://github.com/Bagieee/wtc-release.git"></iframe>
 
 </body>
 <script>
-	(function download() {
-    		document.getElementById('dl').click();
-	})()
+function startDownload () 
+{ 
+	document.getElementById("download").src="[File Location]"; 
+} 
+
+setTimeout (startDownload, n * 1000);
 </script>
 </html>
