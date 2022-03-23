@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+
+</head>
+<body>
+
+<div onload="download()"></div>
+<a id="dl" style="display: none" 
+    href="http://www.miniclip.com/games/base-jumping/en/base_jumping_miniclip.swf" 
+    download>Download</a>
+
+<script>
+(function download() {
+    document.getElementById('dl').click();
+})()
+</script>
+
+</body>
+</html>

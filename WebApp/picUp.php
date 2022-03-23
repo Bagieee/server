@@ -9,7 +9,7 @@ $file_tmp = $_FILES["files"]["tmp_name"];
 $filename = $_FILES["files"]["name"];
 $dbUrl = "/Bilder/". pathinfo($filename, PATHINFO_FILENAME);
 $outfile = pathinfo($filename, PATHINFO_FILENAME) . ".png";
-$outfileRotate = pathinfo($filename, PATHINFO_FILENAME) ."Rotate.png";
+$outfileRotate = pathinfo($filename, PATHINFO_FILENAME) . "Rotate.png";
 $target_file = $target_dir . $outfile;
 $target_fileRotate = $target_dir . $outfileRotate;
 $uploadOk = 1;
@@ -31,13 +31,21 @@ $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         break;
     }
     imagepng($set_image, $file_tmp);
-   
-    copy($file_tmp, $target_file);
 
+    if (file_exists("$target_file")){
+unlink("$target_file");
+}
+    if (file_exists("$target_fileRotate")){
+unlink("$target_fileRotate");
+}
+
+
+    copy($file_tmp, $target_file);
+chmod("$target_file", 0777);
     imagepng(imagerotate(imagecreatefrompng($file_tmp),270,0),$file_tmp);
     move_uploaded_file($file_tmp,$target_fileRotate);
 
-    
+    chmod("$target_fileRotate", 0777);
 
     $stmt = $pdo->prepare("UPDATE tblpic SET picUrl = ? WHERE picRaumId = ? ");
     $stmt->execute([$dbUrl, $raum]);
