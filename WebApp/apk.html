@@ -1,23 +1,15 @@
 <!DOCTYPE html>
 <html>
-<head>
-
-
-
-</head>
+<head></head>
 <body>
-<a></a>
-<div onload="download()"></div>
-<!-- <a id="dl" style="display: none" action="download" href="https://github.com/Bagieee/wtc-release.git"></a> -->
-<iframe width="1" height="1" frameborder="0" src="https://github.com/Bagieee/wtc-release.git"></iframe>
+    <a href="wtc-install.apk" download hidden>
+        <button type="button" id="dl">Download</button>
+    </a>
 
+    <script>
+        (function download() {
+            document.getElementById('dl').click();
+        })()
+        </script>
 </body>
-<script>
-function startDownload () 
-{ 
-	document.getElementById("download").src="[File Location]"; 
-} 
-
-setTimeout (startDownload, n * 1000);
-</script>
 </html>
