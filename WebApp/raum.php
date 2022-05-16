@@ -38,6 +38,8 @@
 
     $tischRaumId = $_GET['raumid'];
     $counter = 1;
+    $time = new DateTime(date("Y-m-d H:i:s"));
+
     $stmt = $pdo->prepare("SELECT * FROM tbltisch where tischRaumId = ? ORDER BY tischNummer");
     $stmt->execute([$tischRaumId]);      
     echo "<div id='tische'>";
@@ -47,11 +49,20 @@
         $stmtErgebniss->execute([$row['tischId']]);
         if ($stmtErgebniss->rowCount() > 0){
             foreach($stmtErgebniss->fetchAll() as $borderErgebniss);{
-                if ($borderErgebniss['scanErgebniss'] == 0){
-                    $border = 'style="border-color:#f17056 ! important; background-color:#f17056 ! important;"'; 
+                $altesDatum = new DateTime(strtotime($borderErgebniss['scanErgebniss']));
+                if (!(($time->diff($altesDatum))>2)){
+                    print_r(($time->diff($altesDatum))->days);
+                    print_r($altesDatum);
+                    print_r($time);
+                    if ($borderErgebniss['scanErgebniss'] == 0){
+                        $border = 'style="border-color:#f17056 ! important; background-color:#f17056 ! important;"'; 
+                    }
+                    else if ($borderErgebniss['scanErgebniss'] == 1){
+                        $border = 'style="border-color:#90EE90 ! important; background-color:#90EE90 ! important;"';
+                    }
                 }
-                else if ($borderErgebniss['scanErgebniss'] == 1){
-                    $border = 'style="border-color:#90EE90 ! important; background-color:#90EE90 ! important;"';
+                else {
+                    $border = 'style="border-color:#FCBA03 ! important; background-color:#FCBA03 ! important;"';
                 }
                               
             }

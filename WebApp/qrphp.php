@@ -2,6 +2,7 @@
 
 require_once('dbCon.php');
 require('libs/pdf/fpdf.php');
+require('libs/phpqrcode/phpqrcode.php');
 
 $tischRaumId = $_GET['tischRaumId'];
 
@@ -30,7 +31,7 @@ $pdf->Line(105,0,105,500);
             if ($c == 0){
                 
                 $url = urlencode($row["tischRaumId"].'/'.$row["tischNummer"]);
-                $pdf->Image('https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl='.$url, 20, $y, NULL, NULL,'PNG');
+                $pdf->Image(QRcode::png('$url'), 20, $y, NULL, NULL,'PNG');
                 $pdf->SetY($y+3);
                 $pdf->SetX(30);
                 $pdf->SetFont('Arial','',14);
@@ -40,7 +41,7 @@ $pdf->Line(105,0,105,500);
             else if ($c == 1){
                 
                 $url = urlencode($row["tischRaumId"].'/'.$row["tischNummer"]);
-                $pdf->Image('https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl='.$url, 110, $y, NULL, NULL,'PNG');
+                $pdf->Image(QRcode::png('$url'), 110, $y, NULL, NULL,'PNG');
                 $pdf->SetY($y+3);
                 $pdf->SetX(120);
                 $pdf->SetFont('Arial','',14);

@@ -61,7 +61,7 @@
                         $class = "backgroundRed";
                     }
                     echo "<tr id='".$class."'>";
-                    echo "<td>".$row['scanTime']."</td>";
+                    echo "<td>".(date("d.m.Y H.i", strtotime($row['scanTime'])))."</td>";
                     echo "<td>".$row['scanName']."</td>";
                     echo "<td>".$ergebniss."</td>";
                     echo "<td>".$row['scanKommentar']."</td>";
