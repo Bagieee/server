@@ -2,7 +2,7 @@
 $PDO = false;
 $servername = "toolcheck.dida145600.local";
 $dbname = "wtc";
-$username = "root";
+$username = "web";
 $password = "";
 $options = [
     \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
