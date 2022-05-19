@@ -51,9 +51,7 @@
             foreach($stmtErgebniss->fetchAll() as $borderErgebniss);{
                 $altesDatum = new DateTime(strtotime($borderErgebniss['scanErgebniss']));
                 if (!(($time->diff($altesDatum))>2)){
-                    print_r(($time->diff($altesDatum))->days);
-                    print_r($altesDatum);
-                    print_r($time);
+                    
                     if ($borderErgebniss['scanErgebniss'] == 0){
                         $border = 'style="border-color:#f17056 ! important; background-color:#f17056 ! important;"'; 
                     }
