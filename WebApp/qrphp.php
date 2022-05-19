@@ -32,7 +32,7 @@ $pdf->Line(105,0,105,500);
             if ($c == 0){
                 
                 $url = $row["tischRaumId"].'/'.$row["tischNummer"];
-                $filename = "qr_".$row["tischRaumId"].$row["tischNummer"].".png";
+                $filename = "pics/qr_".$row["tischRaumId"].$row["tischNummer"].".png";
                 QRcode::png($url, $filename, 4, 10, 4);
                 chmod($filename, 0777);
                 $pdf->Image($filename, 20, $y, NULL, NULL,'PNG');
@@ -46,7 +46,7 @@ $pdf->Line(105,0,105,500);
             else if ($c == 1){
                 
                 $url = $row["tischRaumId"].'/'.$row["tischNummer"];
-                $filename = "qr_".$row["tischRaumId"].$row["tischNummer"].".png";
+                $filename = "pics/qr_".$row["tischRaumId"].$row["tischNummer"].".png";
                 QRcode::png($url, $filename, 4, 10, 4);
                 chmod($filename, 0777);
                 $pdf->Image($filename, 110, $y, NULL, NULL,'PNG');
@@ -62,11 +62,11 @@ $pdf->Line(105,0,105,500);
             
         }
 
-$pdf->Output('Raum'.$row["tischRaumId"], 'D');
+$pdf->Output('Raum'.$row["tischRaumId"].".pdf", 'D');
 
-$images = glob("./" . "qr_*.png");
+$images = glob("pics/" . "qr_*.png");
 
 foreach ($images as $image){
-    unlink("./" . $image);
+    unlink("pics/" . $image);
 }
 
