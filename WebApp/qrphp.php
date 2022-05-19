@@ -58,7 +58,7 @@ $pdf->Line(105,0,105,500);
             
         }
 
-$pdf->Output();
+$pdf->Output('Raum'.$row["tischRaumId"], 'D');
 
 $images = glob("./" . "qr_*.png");
 
