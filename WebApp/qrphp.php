@@ -32,8 +32,10 @@ $pdf->Line(105,0,105,500);
             if ($c == 0){
                 
                 $url = $row["tischRaumId"].'/'.$row["tischNummer"];
-                QRcode::png($url, "qr_".$row["tischRaumId"].$row["tischNummer"].".png", 4, 10, 4);
-                $pdf->Image("qr_".$row["tischRaumId"].$row["tischNummer"].".png", 20, $y, NULL, NULL,'PNG');
+                $filename = "qr_".$row["tischRaumId"].$row["tischNummer"].".png";
+                QRcode::png($url, $filename, 4, 10, 4);
+                chmod($filename, 0777);
+                $pdf->Image($filename, 20, $y, NULL, NULL,'PNG');
                 $pdf->SetY($y+3);
                 $pdf->SetX(30);
                 $pdf->SetFont('Arial','',14);
@@ -44,8 +46,10 @@ $pdf->Line(105,0,105,500);
             else if ($c == 1){
                 
                 $url = $row["tischRaumId"].'/'.$row["tischNummer"];
-                $pic = QRcode::png($url, "qr_".$row["tischRaumId"].$row["tischNummer"].".png", 4, 10, 4);
-                $pdf->Image("qr_".$row["tischRaumId"].$row["tischNummer"].".png", 110, $y, NULL, NULL,'PNG');
+                $filename = "qr_".$row["tischRaumId"].$row["tischNummer"].".png";
+                QRcode::png($url, $filename, 4, 10, 4);
+                chmod($filename, 0777);
+                $pdf->Image($filename, 110, $y, NULL, NULL,'PNG');
                 $pdf->SetY($y+3);
                 $pdf->SetX(120);
                 $pdf->SetFont('Arial','',14);
